@@ -44,3 +44,4 @@ public class PageGenerator {
         cfg = new Configuration();
     }
 }
+ 
