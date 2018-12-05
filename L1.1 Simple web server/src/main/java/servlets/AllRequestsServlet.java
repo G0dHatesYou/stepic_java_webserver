@@ -23,15 +23,25 @@ public class AllRequestsServlet extends HttpServlet {
 
         Map<String, Object> pageVariables = createPageVariablesMap(request);
         pageVariables.put("message", "");
-        //PageGenerator.instance().getPage("page.html", pageVariables)
-       // response.getWriter().println("<H1>Leha - loh1</H1>");
-        String massage = new String();
-        massage = request.getQueryString();
-        int index = massage.indexOf('=')+1;
-         massage =  massage.substring(index);
-       // response.getWriter().println(pageVariables.get("parameters"));
-        response.getWriter().println(massage);
-        //response.setContentType("text/html;charset=utf-8");
+        PageGenerator.instance().getPage("page.html", pageVariables);
+        //response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+        String message = request.getParameter("message");
+        if (message==null){
+            message = "";
+        }
+        pageVariables.put("message",message);
+        response.getWriter().println(PageGenerator.instance().getPage("page.html", pageVariables));
+
+
+        //response.getWriter().println("<H1>ANDRUHA PIDORAS</H1>");
+        //String massage = new String();
+        //massage = request.getQueryString();
+        // int index = massage.indexOf('=')+1;
+        //  massage =  massage.substring(index);
+        // response.getWriter().println(pageVariables.get("parameters"));
+        //response.getWriter().println("<H2>"+massage+"</H2>");
+
+        response.setContentType("text/html;charset=utf-8");
         response.setStatus(HttpServletResponse.SC_OK);
 
     }
